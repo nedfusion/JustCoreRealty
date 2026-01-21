@@ -127,7 +127,7 @@ export default function Contact() {
 
               <div className="relative h-80">
                 <OptimizedImage
-                  src="/au2a0133.jpg"
+                  src="/au2a0095.jpg"
                   alt="Luxury Property"
                   className="w-full h-full object-cover"
                 />
@@ -232,7 +232,7 @@ export default function Contact() {
             <h2 className="text-3xl mb-8 text-center">Visit Our Location</h2>
             <div className="w-full h-[500px] border border-white/10 overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.6437877583597!2d3.5395537!3d6.4363333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf53bbb8f7935%3A0x8d0c1c8f6c8e9c6d!2sPinnock%20Beach%20Estate!5e0!3m2!1sen!2sng!4v1705847890123!5m2!1sen!2sng"
+                src="https://www.google.com/maps?q=Pinnock+Beach+Estate,+Lekki,+Lagos,+Nigeria&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
