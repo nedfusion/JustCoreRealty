@@ -115,10 +115,10 @@ export default function Contact() {
                     <div>
                       <h3 className="text-xl mb-2">Phone</h3>
                       <a
-                        href="tel:+2348064289445"
+                        href="tel:+2438142995133"
                         className="text-white/70 hover:text-[#C9A24D] transition-colors"
                       >
-                        +234 806 428 9445
+                        +243 814 299 5133
                       </a>
                     </div>
                   </div>
