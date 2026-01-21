@@ -24,7 +24,7 @@ function SplitContent({ title, text, image, reverse }: { title: string; text: st
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className={`w-full h-[500px] bg-gray-200 relative ${reverse ? 'order-2' : 'order-1 md:order-2'}`}
+          className={`w-full aspect-[3/4] bg-gray-200 relative ${reverse ? 'order-2' : 'order-1 md:order-2'}`}
         >
           <OptimizedImage
             src={image}
