@@ -62,7 +62,6 @@ function MediaSection() {
             '/au2a0091.jpg',
             '/au2a0095.jpg',
             '/au2a0097.jpg',
-            '/au2a0113.jpg',
             '/au2a0133.jpg',
             '/au2a0145_2.jpg'
           ].map((img, i) => (
@@ -131,7 +130,7 @@ export default function Home() {
       <SplitContent
         title="Comprehensive Solutions"
         text="From luxury residential developments to bespoke interior design, we deliver end-to-end solutions that meet global standards. Our work spans across Lagos, Abuja, Port Harcourt, Asaba, and Aba, bringing world-class expertise to Nigeria's major urban centers. Every project reflects our commitment to quality, professionalism, and long-term client satisfaction."
-        image="/au2a0113.jpg"
+        image="/au2a0091.jpg"
         reverse
       />
       <Services />

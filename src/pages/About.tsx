@@ -192,7 +192,7 @@ export default function About() {
           >
             <div className="relative h-[500px] order-2 lg:order-1">
               <OptimizedImage
-                src="/au2a0113.jpg"
+                src="/au2a0133.jpg"
                 alt="Geographic Coverage"
                 className="w-full h-full object-cover"
               />
