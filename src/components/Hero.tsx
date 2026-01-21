@@ -63,24 +63,6 @@ export default function Hero() {
         />
       ))}
 
-      <motion.div
-        className="relative z-10 px-6"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        <motion.h1
-          variants={itemUp}
-          className="text-5xl md:text-7xl font-light tracking-wide mb-6"
-        >
-          Architectural Precision.
-          <br />
-          Timeless Luxury.
-        </motion.h1>
-        <motion.p variants={itemUp} className="max-w-2xl mx-auto text-lg opacity-80">
-          Premium real estate development and interior excellence.
-        </motion.p>
-      </motion.div>
 
       <div className="absolute inset-0 bg-black/40 z-[5]" />
     </section>
