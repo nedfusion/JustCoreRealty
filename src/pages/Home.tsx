@@ -24,12 +24,12 @@ function SplitContent({ title, text, image, reverse }: { title: string; text: st
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className={`w-full h-[600px] bg-gray-200 relative ${reverse ? 'order-2' : 'order-1 md:order-2'}`}
+          className={`w-full h-[600px] relative overflow-hidden ${reverse ? 'order-2' : 'order-1 md:order-2'}`}
         >
           <OptimizedImage
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-10" />
         </motion.div>

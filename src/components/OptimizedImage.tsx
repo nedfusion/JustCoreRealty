@@ -18,7 +18,7 @@ export default function OptimizedImage({
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className={`relative overflow-hidden ${aspectRatio ? aspectRatio : ''}`}>
+    <>
       <img
         src={src}
         alt={alt}
@@ -30,8 +30,8 @@ export default function OptimizedImage({
         onLoad={() => setIsLoaded(true)}
       />
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+        <div className="absolute inset-0 bg-black animate-pulse" />
       )}
-    </div>
+    </>
   );
 }
