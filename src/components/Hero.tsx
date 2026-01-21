@@ -75,13 +75,13 @@ export default function Hero() {
         <div className="text-left max-w-2xl">
           <motion.h1
             variants={itemUp}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight"
           >
             Welcome to a World of Architectural Precision, Timeless Luxury.
           </motion.h1>
           <motion.p
             variants={itemUp}
-            className="text-lg md:text-xl text-white/90"
+            className="text-base md:text-lg text-white/90"
           >
             Premium real estate development and interior excellence
           </motion.p>
