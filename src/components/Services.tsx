@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Building2, PaintBucket, Home, Briefcase, Lightbulb, Sofa } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 export default function Services() {
   const realEstateServices = [
@@ -94,8 +95,8 @@ export default function Services() {
                 className="grid lg:grid-cols-2 gap-16 items-center"
               >
                 <div className={`${isEven ? 'order-2 lg:order-1' : 'order-2'}`}>
-                  <div className="relative h-[500px] overflow-hidden">
-                    <img
+                  <div className="relative h-[500px]">
+                    <OptimizedImage
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover"

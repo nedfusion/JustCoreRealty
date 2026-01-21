@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Target, Award, Globe, Users } from 'lucide-react';
+import OptimizedImage from '../components/OptimizedImage';
 
 export default function About() {
   const coreValues = [
@@ -67,8 +68,8 @@ export default function About() {
               </div>
             </div>
 
-            <div className="relative h-[500px] overflow-hidden">
-              <img
+            <div className="relative h-[500px]">
+              <OptimizedImage
                 src="/au2a0097.jpg"
                 alt="Just Core Realty"
                 className="w-full h-full object-cover"
@@ -189,8 +190,8 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="grid lg:grid-cols-2 gap-16 items-center"
           >
-            <div className="relative h-[500px] overflow-hidden order-2 lg:order-1">
-              <img
+            <div className="relative h-[500px] order-2 lg:order-1">
+              <OptimizedImage
                 src="/au2a0113.jpg"
                 alt="Geographic Coverage"
                 className="w-full h-full object-cover"

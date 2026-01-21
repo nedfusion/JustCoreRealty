@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
+import OptimizedImage from '../components/OptimizedImage';
 
 function SplitContent({ title, text, image, reverse }: { title: string; text: string; image: string; reverse?: boolean }) {
   return (
@@ -23,9 +24,9 @@ function SplitContent({ title, text, image, reverse }: { title: string; text: st
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className={`w-full h-[500px] bg-gray-200 relative overflow-hidden ${reverse ? 'order-2' : 'order-1 md:order-2'}`}
+          className={`w-full h-[500px] bg-gray-200 relative ${reverse ? 'order-2' : 'order-1 md:order-2'}`}
         >
-          <img
+          <OptimizedImage
             src={image}
             alt={title}
             className="w-full h-full object-cover"
@@ -69,9 +70,9 @@ function MediaSection() {
               key={i}
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.4 }}
-              className="h-[350px] bg-cover bg-center relative overflow-hidden group cursor-pointer"
+              className="h-[350px] bg-cover bg-center relative group cursor-pointer"
             >
-              <img
+              <OptimizedImage
                 src={img}
                 alt={`Project ${i + 1}`}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
