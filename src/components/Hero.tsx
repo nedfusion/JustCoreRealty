@@ -70,18 +70,18 @@ export default function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative z-10 max-w-7xl mx-auto px-6 w-full flex justify-start"
+        className="relative z-10 w-full flex justify-start pl-8 md:pl-12 lg:pl-16"
       >
-        <div className="text-left max-w-2xl">
+        <div className="text-left max-w-xl">
           <motion.h1
             variants={itemUp}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight"
+            className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 leading-tight"
           >
             Welcome to a World of Architectural Precision, Timeless Luxury.
           </motion.h1>
           <motion.p
             variants={itemUp}
-            className="text-base md:text-lg text-white/90"
+            className="text-sm md:text-base text-white/90"
           >
             Premium real estate development and interior excellence
           </motion.p>
