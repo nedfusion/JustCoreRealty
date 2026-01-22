@@ -16,11 +16,11 @@ export default function Properties() {
 
         <div className="space-y-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="image-zoom order-2 lg:order-1">
+            <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
               <OptimizedImage
-                src="/au2a0145_2.jpg"
+                src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Luxury Apartments"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
             <div className="order-1 lg:order-2 space-y-6">
@@ -86,11 +86,11 @@ export default function Properties() {
                 </div>
               </div>
             </div>
-            <div className="image-zoom">
+            <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] bg-gray-100">
               <OptimizedImage
-                src="/au2a0077.jpg"
+                src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Sky Residences"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
           </div>
