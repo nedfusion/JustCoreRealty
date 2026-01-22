@@ -1,4 +1,4 @@
-import { Users, Dumbbell, Briefcase, Waves, Wifi, Car, Shield, Home } from 'lucide-react';
+import { Users, Dumbbell, Briefcase, Waves, Wifi, Car, Shield } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 
 export default function Amenities() {
@@ -69,7 +69,6 @@ export default function Amenities() {
                     src={amenity.image}
                     alt={amenity.title}
                     className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                    aspectRatio="aspect-square"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">

@@ -21,7 +21,6 @@ export default function Properties() {
                 src="/au2a0145_2.jpg"
                 alt="Luxury Apartments"
                 className="w-full h-full object-cover"
-                aspectRatio="aspect-[4/3]"
               />
             </div>
             <div className="order-1 lg:order-2 space-y-6">
@@ -92,7 +91,6 @@ export default function Properties() {
                 src="/au2a0077.jpg"
                 alt="Sky Residences"
                 className="w-full h-full object-cover"
-                aspectRatio="aspect-[4/3]"
               />
             </div>
           </div>

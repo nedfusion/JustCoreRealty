@@ -4,7 +4,6 @@ interface OptimizedImageProps {
   src: string;
   alt: string;
   className?: string;
-  aspectRatio?: string;
   priority?: boolean;
 }
 
@@ -12,7 +11,6 @@ export default function OptimizedImage({
   src,
   alt,
   className = '',
-  aspectRatio,
   priority = false
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
