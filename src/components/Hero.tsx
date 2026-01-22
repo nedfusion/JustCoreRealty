@@ -15,7 +15,12 @@ const heroImages = [
   '/jcore1.jpg',
   '/jcore2.jpg',
   '/jcore3.jpg',
-  '/jcore4.jpg'
+  '/jcore4.jpg',
+  '/img_9870 copy.jpg',
+  '/img_9866 copy.jpg',
+  '/img_9863 copy.jpg',
+  '/img_9857 copy.jpg',
+  '/img_9848 copy.jpg'
 ];
 
 export default function Hero() {
