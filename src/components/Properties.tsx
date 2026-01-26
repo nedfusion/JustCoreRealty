@@ -1,6 +1,14 @@
 import OptimizedImage from './OptimizedImage';
 
 export default function Properties() {
+  const signatureImages = [
+    '/img_9848 copy.jpg',
+    '/img_9857 copy.jpg',
+    '/img_9863 copy.jpg',
+    '/img_9866 copy.jpg',
+    '/img_9870 copy.jpg'
+  ];
+
   return (
     <section id="properties" className="py-28 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,7 +26,7 @@ export default function Properties() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
               <OptimizedImage
-                src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Luxury Apartments"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -88,7 +96,7 @@ export default function Properties() {
             </div>
             <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] bg-gray-100">
               <OptimizedImage
-                src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Sky Residences"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -99,132 +107,22 @@ export default function Properties() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
-              <OptimizedImage
-                src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Urban Estates"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
+              <div className="grid grid-cols-2 gap-2 w-full h-full p-2">
+                {signatureImages.map((img, idx) => (
+                  <div key={idx} className={`relative overflow-hidden rounded ${idx === 0 ? 'col-span-2' : ''}`}>
+                    <OptimizedImage
+                      src={img}
+                      alt={`Signature Project ${idx + 1}`}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="order-1 lg:order-2 space-y-6">
               <div className="h-0.5 w-16 bg-gold"></div>
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                Urban Estates
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed font-light">
-                Experience contemporary living in the heart of the city. Our urban estates combine
-                modern architecture with premium amenities, offering an unmatched lifestyle for
-                discerning professionals and families.
-              </p>
-              <div className="space-y-4 pt-4">
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Prime city center locations</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Smart home technology integration</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Concierge and valet services</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Walking distance to entertainment and dining</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="h-0.5 w-16 bg-gold"></div>
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                Coastal Villas
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed font-light">
-                Discover waterfront living at its finest. Our coastal villas offer breathtaking
-                ocean views, private beach access, and sophisticated design that seamlessly blends
-                indoor and outdoor luxury.
-              </p>
-              <div className="space-y-4 pt-4">
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Direct beach access</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Infinity pools and outdoor lounges</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Floor-to-ceiling glass walls</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Sunset terraces and entertainment areas</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] bg-gray-100">
-              <OptimizedImage
-                src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Coastal Villas"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-          </div>
-
-          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
-              <OptimizedImage
-                src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Garden Residences"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div className="order-1 lg:order-2 space-y-6">
-              <div className="h-0.5 w-16 bg-gold"></div>
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                Garden Residences
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed font-light">
-                Embrace tranquility in our garden residences. Surrounded by lush landscaping and
-                serene outdoor spaces, these homes offer a peaceful retreat without sacrificing
-                luxury and convenience.
-              </p>
-              <div className="space-y-4 pt-4">
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Private landscaped gardens</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Outdoor dining and lounge areas</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Eco-friendly design features</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Tranquil water features</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="h-0.5 w-16 bg-gold"></div>
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                Signature Estates
+                Signature Projects
               </h3>
               <p className="text-lg text-gray-700 leading-relaxed font-light">
                 Our flagship properties represent the pinnacle of luxury real estate. Each signature
@@ -242,59 +140,11 @@ export default function Properties() {
                 </div>
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Wine cellars and private cinemas</p>
+                  <p className="text-gray-700 font-light">Premium finishes throughout</p>
                 </div>
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
                   <p className="text-gray-700 font-light">24/7 concierge and security</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] bg-gray-100">
-              <OptimizedImage
-                src="https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Signature Estates"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-          </div>
-
-          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
-              <OptimizedImage
-                src="https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Metropolitan Towers"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div className="order-1 lg:order-2 space-y-6">
-              <div className="h-0.5 w-16 bg-gold"></div>
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                Metropolitan Towers
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed font-light">
-                Rise above the ordinary in our metropolitan towers. These architectural landmarks
-                offer sophisticated urban living with unmatched amenities, stunning views, and a
-                prestigious address in the city's most coveted neighborhoods.
-              </p>
-              <div className="space-y-4 pt-4">
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Panoramic city skyline views</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Rooftop sky gardens and lounges</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">Exclusive resident amenities</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-gold rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <p className="text-gray-700 font-light">High-speed elevators and smart building tech</p>
                 </div>
               </div>
             </div>

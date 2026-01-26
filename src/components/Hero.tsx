@@ -57,16 +57,15 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {heroImages.map((img, i) => (
-        <img
-          key={i}
-          src={img}
-          alt={`Hero ${i + 1}`}
-          style={{ display: 'none' }}
-          loading="eager"
-          fetchPriority={i === 0 ? 'high' : 'low'}
-        />
-      ))}
+      <img
+        src={heroImages[0]}
+        alt="Hero 1"
+        style={{ display: 'none' }}
+        loading="eager"
+        fetchPriority="high"
+      />
+      <link rel="preload" as="image" href={heroImages[1]} />
+      <link rel="preload" as="image" href={heroImages[2]} />
 
 
       <div className="absolute inset-0 bg-black/40 z-[5]" />
