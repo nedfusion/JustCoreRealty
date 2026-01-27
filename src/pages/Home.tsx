@@ -131,12 +131,12 @@ export default function Home() {
       <SplitContent
         title="Built on Integrity. Defined by Excellence."
         text="Just Core Realty and Interiors is a premium real estate development and interior design company committed to delivering architecturally refined, aesthetically compelling, and commercially viable spaces across Nigeria. We operate at the intersection of luxury, functionality, and integrity, creating enduring value through disciplined design and meticulous execution."
-        image="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800"
+        image="/img_0419.jpg"
       />
       <SplitContent
         title="Comprehensive Solutions"
         text="From luxury residential developments to bespoke interior design, we deliver end-to-end solutions that meet global standards. Our work spans across Lagos, Abuja, Port Harcourt, Asaba, and Aba, bringing world-class expertise to Nigeria's major urban centers. Every project reflects our commitment to quality, professionalism, and long-term client satisfaction."
-        image="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
+        image="/img_0400.jpg"
         reverse
       />
       <Services />
