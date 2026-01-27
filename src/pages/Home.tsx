@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
+import Ecstasy from '../components/Ecstasy';
 
 function SplitContent({ title, text, image, reverse }: { title: string; text: string; image: string; reverse?: boolean }) {
   return (
@@ -142,6 +143,7 @@ export default function Home() {
         image="/img_0400.jpg"
         reverse
       />
+      <Ecstasy />
       <Services />
       <MediaSection />
       <CTASection />
