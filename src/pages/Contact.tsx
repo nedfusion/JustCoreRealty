@@ -126,7 +126,7 @@ export default function Contact() {
 
               <div className="relative h-80">
                 <img
-                  src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="/img_0391.jpg"
                   alt="Luxury Property"
                   className="w-full h-full object-cover"
                   loading="lazy"

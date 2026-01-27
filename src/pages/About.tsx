@@ -69,7 +69,7 @@ export default function About() {
 
             <div className="relative h-[500px] overflow-hidden">
               <img
-                src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/img_0428.jpg"
                 alt="Just Core Realty"
                 className="w-full h-full object-cover image-hover-effect"
                 loading="lazy"
@@ -192,7 +192,7 @@ export default function About() {
           >
             <div className="relative h-[500px] order-2 lg:order-1 overflow-hidden">
               <img
-                src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/img_0438.jpg"
                 alt="Geographic Coverage"
                 className="w-full h-full object-cover image-hover-effect"
                 loading="lazy"
