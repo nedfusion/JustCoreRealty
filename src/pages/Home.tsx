@@ -28,7 +28,7 @@ function SplitContent({ title, text, image, reverse }: { title: string; text: st
           <img
             src={image}
             alt={title}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover image-hover-effect"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-black bg-opacity-10" />
@@ -82,7 +82,7 @@ function MediaSection() {
               <img
                 src={img}
                 alt={`Project ${i + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover image-hover-effect"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300" />

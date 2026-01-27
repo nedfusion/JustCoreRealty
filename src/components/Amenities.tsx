@@ -1,4 +1,5 @@
 import { Users, Dumbbell, Briefcase, Waves, Wifi, Car, Shield } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
 export default function Amenities() {
   const amenities = [
@@ -47,7 +48,7 @@ export default function Amenities() {
   return (
     <section id="amenities" className="py-28 lg:py-32 bg-charcoal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <ScrollReveal className="text-center mb-20">
           <div className="h-0.5 w-20 bg-gold mb-8 mx-auto"></div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
             World-Class Amenities
@@ -56,18 +57,19 @@ export default function Amenities() {
             Experience an elevated lifestyle with our comprehensive range of luxury amenities
             designed to cater to your every need.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {amenities.map((amenity, index) => {
             const Icon = amenity.icon;
             return (
-              <div key={index} className="group cursor-pointer">
+              <ScrollReveal key={index} delay={index * 50}>
+              <div className="group cursor-pointer">
                 <div className="relative aspect-square overflow-hidden bg-gray-900 mb-6">
                   <img
                     src={amenity.image}
                     alt={amenity.title}
-                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover image-hover-effect"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300"></div>
@@ -79,6 +81,7 @@ export default function Amenities() {
                   {amenity.title}
                 </h4>
               </div>
+              </ScrollReveal>
             );
           })}
         </div>

@@ -1,3 +1,5 @@
+import ScrollReveal from './ScrollReveal';
+
 export default function Properties() {
   const signatureImages = [
     'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
@@ -10,7 +12,7 @@ export default function Properties() {
   return (
     <section id="properties" className="py-28 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <ScrollReveal className="text-center mb-20">
           <div className="h-0.5 w-20 bg-gold mb-8 mx-auto"></div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Our Portfolio
@@ -18,15 +20,16 @@ export default function Properties() {
           <p className="text-lg text-muted max-w-2xl mx-auto">
             Discover exceptional residences designed for those who demand the finest in luxury living.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="space-y-24">
+          <ScrollReveal delay={100}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
               <img
                 src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Luxury Apartments"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover image-hover-effect"
                 loading="lazy"
               />
             </div>
@@ -60,9 +63,11 @@ export default function Properties() {
               </div>
             </div>
           </div>
+          </ScrollReveal>
 
           <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
+          <ScrollReveal delay={200}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="h-0.5 w-16 bg-gold"></div>
@@ -97,14 +102,16 @@ export default function Properties() {
               <img
                 src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Sky Residences"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover image-hover-effect"
                 loading="lazy"
               />
             </div>
           </div>
+          </ScrollReveal>
 
           <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
+          <ScrollReveal delay={300}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
               <div className="grid grid-cols-2 gap-2 w-full h-full p-2">
@@ -113,7 +120,7 @@ export default function Properties() {
                     <img
                       src={img}
                       alt={`Signature Project ${idx + 1}`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover image-hover-effect"
                       loading="lazy"
                     />
                   </div>
@@ -150,6 +157,7 @@ export default function Properties() {
               </div>
             </div>
           </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

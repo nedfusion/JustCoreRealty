@@ -67,11 +67,11 @@ export default function About() {
               </div>
             </div>
 
-            <div className="relative h-[500px]">
+            <div className="relative h-[500px] overflow-hidden">
               <img
                 src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Just Core Realty"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover image-hover-effect"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -190,11 +190,11 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="grid lg:grid-cols-2 gap-16 items-center"
           >
-            <div className="relative h-[500px] order-2 lg:order-1">
+            <div className="relative h-[500px] order-2 lg:order-1 overflow-hidden">
               <img
                 src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Geographic Coverage"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover image-hover-effect"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

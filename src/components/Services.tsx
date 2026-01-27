@@ -94,11 +94,11 @@ export default function Services() {
                 className="grid lg:grid-cols-2 gap-16 items-center"
               >
                 <div className={`${isEven ? 'order-2 lg:order-1' : 'order-2'}`}>
-                  <div className="relative h-[500px]">
+                  <div className="relative h-[500px] overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover image-hover-effect"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

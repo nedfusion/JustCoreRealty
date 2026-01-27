@@ -6,11 +6,6 @@ const container = {
   show: { transition: { staggerChildren: 0.1 } }
 };
 
-const itemUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
-};
-
 const heroImages = [
   '/img_0398.jpg',
   '/img_0400.jpg',
@@ -67,18 +62,12 @@ export default function Hero() {
         className="relative z-10 w-full flex justify-start pl-8 md:pl-12 lg:pl-16"
       >
         <div className="text-left max-w-xl">
-          <motion.h1
-            variants={itemUp}
-            className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 leading-tight"
-          >
+          <h1 className="hero-title text-xl md:text-2xl lg:text-3xl font-bold mb-3 leading-tight">
             Welcome to a World of Architectural Precision, Timeless Luxury.
-          </motion.h1>
-          <motion.p
-            variants={itemUp}
-            className="text-sm md:text-base text-white/90"
-          >
+          </h1>
+          <p className="hero-subtitle text-sm md:text-base text-white/90">
             Premium real estate development and interior excellence
-          </motion.p>
+          </p>
         </div>
       </motion.div>
     </section>
