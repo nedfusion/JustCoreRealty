@@ -3,24 +3,19 @@ import { useState, useEffect } from 'react';
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.15 } }
+  show: { transition: { staggerChildren: 0.1 } }
 };
 
 const itemUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
 };
 
 const heroImages = [
   '/jcore1.jpg',
   '/jcore2.jpg',
   '/jcore3.jpg',
-  '/jcore4.jpg',
-  '/img_9870 copy.jpg',
-  '/img_9866 copy.jpg',
-  '/img_9863 copy.jpg',
-  '/img_9857 copy.jpg',
-  '/img_9848 copy.jpg'
+  '/jcore4.jpg'
 ];
 
 export default function Hero() {
@@ -43,16 +38,13 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
         >
-          <motion.div
+          <div
             className="absolute inset-0 w-full h-full bg-cover bg-center"
             style={{
               backgroundImage: `url(${heroImages[currentIndex]})`
             }}
-            initial={{ scale: 1 }}
-            animate={{ scale: 1.05 }}
-            transition={{ duration: 5, ease: 'linear' }}
           />
         </motion.div>
       </AnimatePresence>
@@ -62,10 +54,7 @@ export default function Hero() {
         alt="Hero 1"
         style={{ display: 'none' }}
         loading="eager"
-        fetchPriority="high"
       />
-      <link rel="preload" as="image" href={heroImages[1]} />
-      <link rel="preload" as="image" href={heroImages[2]} />
 
 
       <div className="absolute inset-0 bg-black/40 z-[5]" />
