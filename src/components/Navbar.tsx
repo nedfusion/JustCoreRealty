@@ -1,22 +1,15 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, Linkedin, Instagram, Facebook } from 'lucide-react';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   return (
     <nav className="bg-charcoal sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-5">
-          <div className="flex items-center cursor-pointer" onClick={() => scrollToSection('hero')}>
+          <Link to="/" className="flex items-center">
             <img
               src="/logo-removebg-preview_(2).png"
               alt="Just Core Realty"
@@ -24,45 +17,45 @@ export default function Navbar() {
               loading="eager"
               fetchPriority="high"
             />
-          </div>
+          </Link>
 
           <div className="hidden lg:flex items-center space-x-10">
-            <button
-              onClick={() => scrollToSection('hero')}
+            <Link
+              to="/"
               className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
             >
               HOME
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
+            </Link>
+            <Link
+              to="/about"
               className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
             >
               ABOUT
-            </button>
-            <button
-              onClick={() => scrollToSection('services')}
+            </Link>
+            <Link
+              to="/services"
               className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
             >
               SERVICES
-            </button>
-            <button
-              onClick={() => scrollToSection('properties')}
+            </Link>
+            <Link
+              to="/portfolio"
               className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
             >
               PORTFOLIO
-            </button>
-            <button
-              onClick={() => scrollToSection('amenities')}
+            </Link>
+            <Link
+              to="/amenities"
               className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
             >
               AMENITIES
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
+            </Link>
+            <Link
+              to="/contact"
               className="bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 px-6 py-2.5 text-sm font-semibold tracking-wide"
             >
               CONTACT US
-            </button>
+            </Link>
           </div>
 
           <div className="hidden lg:flex items-center space-x-4 ml-8">
@@ -104,42 +97,48 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-charcoal border-t border-gray-800">
           <div className="px-4 pt-4 pb-6 space-y-1">
-            <button
-              onClick={() => scrollToSection('hero')}
+            <Link
+              to="/"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
             >
               HOME
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
+            </Link>
+            <Link
+              to="/about"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
             >
               ABOUT
-            </button>
-            <button
-              onClick={() => scrollToSection('services')}
+            </Link>
+            <Link
+              to="/services"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
             >
               SERVICES
-            </button>
-            <button
-              onClick={() => scrollToSection('properties')}
+            </Link>
+            <Link
+              to="/portfolio"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
             >
               PORTFOLIO
-            </button>
-            <button
-              onClick={() => scrollToSection('amenities')}
+            </Link>
+            <Link
+              to="/amenities"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
             >
               AMENITIES
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-left py-3 text-gold font-semibold text-sm tracking-wide"
             >
               CONTACT US
-            </button>
+            </Link>
 
             <div className="flex items-center space-x-4 pt-4 border-t border-gray-800 mt-4">
               <a
