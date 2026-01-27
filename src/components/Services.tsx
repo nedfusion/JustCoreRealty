@@ -17,7 +17,7 @@ export default function Services() {
     'Hospitality interiors (hotels, serviced apartments)',
     'Space planning and interior architecture',
     'Custom furniture, finishes, and lighting design',
-    'Turnkey interior fit-out and execution'
+    'European interior fit-out and execution'
   ];
 
   const mainServices = [
@@ -32,7 +32,7 @@ export default function Services() {
       icon: PaintBucket,
       title: 'Interior Design & Fit-Out',
       description: 'Bespoke interior environments that reflect sophistication, comfort, and functional excellence. Each project is tailored to the client\'s lifestyle, brand identity, and functional needs.',
-      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/img_0380.jpg',
       services: interiorServices
     }
   ];

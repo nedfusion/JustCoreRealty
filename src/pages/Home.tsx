@@ -70,7 +70,8 @@ function MediaSection() {
             '/img_0420.jpg',
             '/img_0428.jpg',
             '/img_0437.jpg',
-            '/img_0438.jpg'
+            '/img_0438.jpg',
+            '/img_0598.jpg'
           ].map((img, i) => (
             <motion.div
               key={i}
