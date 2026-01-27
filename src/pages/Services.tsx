@@ -173,7 +173,7 @@ export default function Services() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                    className="bg-white/5 border border-white/10 p-8 hover:border-[#C9A24D]/50 transition-colors"
+                    className="bg-white/5 border border-white/10 p-8 hover:border-[#C9A24D]/50 card-hover-effect"
                   >
                     <div className="w-14 h-14 bg-[#C9A24D]/10 flex items-center justify-center mb-6">
                       <Icon className="w-7 h-7 text-[#C9A24D]" />
@@ -205,7 +205,7 @@ export default function Services() {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                  className="bg-white/5 border border-white/10 p-8 hover:border-[#C9A24D]/50 transition-colors"
+                  className="bg-white/5 border border-white/10 p-8 hover:border-[#C9A24D]/50 card-hover-effect"
                 >
                   <div className="flex items-start gap-6">
                     <div className="text-5xl font-bold text-[#C9A24D]/20">{step.number}</div>
@@ -231,7 +231,7 @@ export default function Services() {
             </p>
             <a
               href="/contact"
-              className="inline-block bg-black text-white px-10 py-4 text-lg font-semibold hover:bg-black/90 transition-colors"
+              className="inline-block bg-black text-white px-10 py-4 text-lg font-semibold btn-hover-effect"
             >
               Contact Us Today
             </a>

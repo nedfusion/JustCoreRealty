@@ -91,7 +91,7 @@ export default function Portfolio() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="group relative h-[400px] overflow-hidden cursor-pointer"
+                className="group relative h-[400px] overflow-hidden cursor-pointer card-hover-effect"
               >
                 <img
                   src={project.image}
@@ -125,7 +125,7 @@ export default function Portfolio() {
             </p>
             <a
               href="/contact"
-              className="inline-block bg-black text-white px-10 py-4 text-lg font-semibold hover:bg-black/90 transition-colors"
+              className="inline-block bg-black text-white px-10 py-4 text-lg font-semibold btn-hover-effect"
             >
               Get In Touch
             </a>

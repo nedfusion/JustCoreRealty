@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 
 export default function Contact() {
@@ -13,6 +13,7 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ export default function Contact() {
       if (error) throw error;
 
       setSubmitStatus('success');
+      setShowMessage(true);
       setFormData({
         firstName: '',
         lastName: '',
@@ -44,13 +46,30 @@ export default function Contact() {
         priceRange: '',
         message: ''
       });
+
+      setTimeout(() => {
+        setShowMessage(false);
+        setTimeout(() => setSubmitStatus('idle'), 300);
+      }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
+      setShowMessage(true);
+
+      setTimeout(() => {
+        setShowMessage(false);
+        setTimeout(() => setSubmitStatus('idle'), 300);
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (submitStatus !== 'idle') {
+      setShowMessage(true);
+    }
+  }, [submitStatus]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -195,13 +214,13 @@ export default function Contact() {
           </div>
 
           {submitStatus === 'success' && (
-            <div className="bg-green-50 border-l-4 border-green-500 text-green-800 px-6 py-4">
+            <div className={`bg-green-50 border-l-4 border-green-500 text-green-800 px-6 py-4 transition-all duration-300 ${showMessage ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-2'}`}>
               Thank you for your inquiry. Our team will contact you shortly.
             </div>
           )}
 
           {submitStatus === 'error' && (
-            <div className="bg-red-50 border-l-4 border-red-500 text-red-800 px-6 py-4">
+            <div className={`bg-red-50 border-l-4 border-red-500 text-red-800 px-6 py-4 transition-all duration-300 ${showMessage ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-2'}`}>
               Something went wrong. Please try again or contact us directly.
             </div>
           )}
@@ -209,7 +228,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gold hover:bg-gold-hover disabled:bg-opacity-60 text-black px-12 py-5 text-base font-semibold tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="w-full bg-gold hover:bg-gold-hover disabled:bg-opacity-60 text-black px-12 py-5 text-base font-semibold tracking-wider btn-hover-effect shadow-lg hover:shadow-xl disabled:hover:transform-none disabled:hover:shadow-lg"
           >
             {isSubmitting ? 'SUBMITTING...' : 'SUBMIT INQUIRY'}
           </button>
