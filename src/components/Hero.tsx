@@ -12,10 +12,11 @@ const itemUp = {
 };
 
 const heroImages = [
-  'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  '/img_0398.jpg',
+  '/img_0400.jpg',
+  '/img_0402.jpg',
+  '/img_0416.jpg',
+  '/img_0419.jpg'
 ];
 
 export default function Hero() {
