@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,19 +20,20 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      const { error } = await supabase
-        .from('contact_inquiries')
-        .insert([
-          {
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            phone: formData.phone,
-            inquiry_type: `${formData.residenceType} - ${formData.priceRange}`,
-            message: formData.message || 'Property inquiry'
-          }
-        ]);
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-contact-form`;
 
-      if (error) throw error;
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
 
       setSubmitStatus('success');
       setShowMessage(true);
