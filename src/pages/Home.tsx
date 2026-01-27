@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
-import OptimizedImage from '../components/OptimizedImage';
 
 function SplitContent({ title, text, image, reverse }: { title: string; text: string; image: string; reverse?: boolean }) {
   return (
@@ -26,10 +25,11 @@ function SplitContent({ title, text, image, reverse }: { title: string; text: st
           transition={{ duration: 0.9 }}
           className={`w-full h-[600px] relative overflow-hidden ${reverse ? 'order-2' : 'order-1 md:order-2'}`}
         >
-          <OptimizedImage
+          <img
             src={image}
             alt={title}
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-black bg-opacity-10" />
         </motion.div>
@@ -57,18 +57,18 @@ function MediaSection() {
         </div>
         <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[
-            '/au2a0050.jpg',
-            '/au2a0077.jpg',
-            '/au2a0091.jpg',
-            '/au2a0095.jpg',
-            '/au2a0097.jpg',
-            '/au2a0145_2.jpg',
-            '/front_view.jpeg',
-            '/side_view.jpeg',
-            '/jcore1.jpg',
-            '/jcore2.jpg',
-            '/jcore3.jpg',
-            '/jcore4.jpg'
+            'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/3935320/pexels-photo-3935320.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=600'
           ].map((img, i) => (
             <motion.div
               key={i}
@@ -76,10 +76,11 @@ function MediaSection() {
               transition={{ duration: 0.4 }}
               className="h-[350px] bg-cover bg-center relative group cursor-pointer"
             >
-              <OptimizedImage
+              <img
                 src={img}
                 alt={`Project ${i + 1}`}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300" />
             </motion.div>
@@ -130,12 +131,12 @@ export default function Home() {
       <SplitContent
         title="Built on Integrity. Defined by Excellence."
         text="Just Core Realty and Interiors is a premium real estate development and interior design company committed to delivering architecturally refined, aesthetically compelling, and commercially viable spaces across Nigeria. We operate at the intersection of luxury, functionality, and integrity, creating enduring value through disciplined design and meticulous execution."
-        image="/jcore4.jpg"
+        image="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800"
       />
       <SplitContent
         title="Comprehensive Solutions"
         text="From luxury residential developments to bespoke interior design, we deliver end-to-end solutions that meet global standards. Our work spans across Lagos, Abuja, Port Harcourt, Asaba, and Aba, bringing world-class expertise to Nigeria's major urban centers. Every project reflects our commitment to quality, professionalism, and long-term client satisfaction."
-        image="/jcore3.jpg"
+        image="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
         reverse
       />
       <Services />

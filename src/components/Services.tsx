@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Building2, PaintBucket, Home, Briefcase, Lightbulb, Sofa } from 'lucide-react';
-import OptimizedImage from './OptimizedImage';
 
 export default function Services() {
   const realEstateServices = [
@@ -26,14 +25,14 @@ export default function Services() {
       icon: Building2,
       title: 'Real Estate Development',
       description: 'End-to-end real estate development solutions, from concept to completion. We deliver developments that combine architectural clarity, market relevance, and sustainable value appreciation.',
-      image: '/au2a0145_2.jpg',
+      image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800',
       services: realEstateServices
     },
     {
       icon: PaintBucket,
       title: 'Interior Design & Fit-Out',
       description: 'Bespoke interior environments that reflect sophistication, comfort, and functional excellence. Each project is tailored to the client\'s lifestyle, brand identity, and functional needs.',
-      image: '/au2a0091.jpg',
+      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
       services: interiorServices
     }
   ];
@@ -96,10 +95,11 @@ export default function Services() {
               >
                 <div className={`${isEven ? 'order-2 lg:order-1' : 'order-2'}`}>
                   <div className="relative h-[500px]">
-                    <OptimizedImage
+                    <img
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>

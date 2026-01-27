@@ -1,12 +1,10 @@
-import OptimizedImage from './OptimizedImage';
-
 export default function Properties() {
   const signatureImages = [
-    '/img_9848 copy.jpg',
-    '/img_9857 copy.jpg',
-    '/img_9863 copy.jpg',
-    '/img_9866 copy.jpg',
-    '/img_9870 copy.jpg'
+    'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/3935320/pexels-photo-3935320.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600'
   ];
 
   return (
@@ -25,10 +23,11 @@ export default function Properties() {
         <div className="space-y-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] order-2 lg:order-1 bg-gray-100">
-              <OptimizedImage
+              <img
                 src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Luxury Apartments"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                loading="lazy"
               />
             </div>
             <div className="order-1 lg:order-2 space-y-6">
@@ -95,10 +94,11 @@ export default function Properties() {
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg shadow-2xl aspect-[4/3] bg-gray-100">
-              <OptimizedImage
+              <img
                 src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Sky Residences"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                loading="lazy"
               />
             </div>
           </div>
@@ -110,10 +110,11 @@ export default function Properties() {
               <div className="grid grid-cols-2 gap-2 w-full h-full p-2">
                 {signatureImages.map((img, idx) => (
                   <div key={idx} className={`relative overflow-hidden rounded ${idx === 0 ? 'col-span-2' : ''}`}>
-                    <OptimizedImage
+                    <img
                       src={img}
                       alt={`Signature Project ${idx + 1}`}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
                     />
                   </div>
                 ))}

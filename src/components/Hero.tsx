@@ -12,10 +12,10 @@ const itemUp = {
 };
 
 const heroImages = [
-  '/jcore1.jpg',
-  '/jcore2.jpg',
-  '/jcore3.jpg',
-  '/jcore4.jpg'
+  'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1920'
 ];
 
 export default function Hero() {

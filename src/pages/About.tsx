@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Target, Award, Globe, Users } from 'lucide-react';
-import OptimizedImage from '../components/OptimizedImage';
 
 export default function About() {
   const coreValues = [
@@ -69,10 +68,11 @@ export default function About() {
             </div>
 
             <div className="relative h-[500px]">
-              <OptimizedImage
-                src="/au2a0097.jpg"
+              <img
+                src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Just Core Realty"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
@@ -191,10 +191,11 @@ export default function About() {
             className="grid lg:grid-cols-2 gap-16 items-center"
           >
             <div className="relative h-[500px] order-2 lg:order-1">
-              <OptimizedImage
-                src="/au2a0133.jpg"
+              <img
+                src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Geographic Coverage"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>

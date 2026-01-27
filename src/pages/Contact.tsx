@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import OptimizedImage from '../components/OptimizedImage';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -126,10 +125,11 @@ export default function Contact() {
               </div>
 
               <div className="relative h-80">
-                <OptimizedImage
-                  src="/au2a0095.jpg"
+                <img
+                  src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Luxury Property"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
