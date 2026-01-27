@@ -57,18 +57,20 @@ function MediaSection() {
         </div>
         <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[
-            'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/3935320/pexels-photo-3935320.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=600'
+            '/img_0162.jpg',
+            '/img_0370.jpg',
+            '/img_0375.jpg',
+            '/img_0380.jpg',
+            '/img_0381.jpg',
+            '/img_0388.jpg',
+            '/img_0389.jpg',
+            '/img_0391.jpg',
+            '/img_0394.jpg',
+            '/img_0395.jpg',
+            '/img_0420.jpg',
+            '/img_0428.jpg',
+            '/img_0437.jpg',
+            '/img_0438.jpg'
           ].map((img, i) => (
             <motion.div
               key={i}
