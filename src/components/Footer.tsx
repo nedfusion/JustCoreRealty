@@ -16,7 +16,7 @@ export default function Footer() {
             <img
               src="/logo-removebg-preview_(2).png"
               alt="Just Core Realty"
-              className="h-16 w-auto mb-6 brightness-110"
+              className="h-24 w-auto mb-6 brightness-110"
               loading="lazy"
             />
             <p className="text-gray-400 leading-relaxed font-light mb-6">

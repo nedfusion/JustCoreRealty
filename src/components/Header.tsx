@@ -8,7 +8,7 @@ export default function Header() {
           <img
             src="/logo-removebg-preview_(2).png"
             alt="Just Core Realty & Interiors"
-            className="h-16 w-auto"
+            className="h-24 w-auto"
             loading="eager"
             fetchPriority="high"
           />

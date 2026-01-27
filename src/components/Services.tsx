@@ -25,7 +25,7 @@ export default function Services() {
       icon: Building2,
       title: 'Real Estate Development',
       description: 'End-to-end real estate development solutions, from concept to completion. We deliver developments that combine architectural clarity, market relevance, and sustainable value appreciation.',
-      image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/side_view.jpeg',
       services: realEstateServices
     },
     {

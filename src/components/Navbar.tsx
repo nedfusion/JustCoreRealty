@@ -20,7 +20,7 @@ export default function Navbar() {
             <img
               src="/logo-removebg-preview_(2).png"
               alt="Just Core Realty"
-              className="h-14 w-auto brightness-110"
+              className="h-20 w-auto brightness-110"
               loading="eager"
               fetchPriority="high"
             />
