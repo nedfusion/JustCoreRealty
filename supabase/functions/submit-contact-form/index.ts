@@ -8,13 +8,11 @@ const corsHeaders = {
 };
 
 interface ContactFormData {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
-  phone: string;
-  residenceType: string;
-  priceRange: string;
+  phone?: string;
   message: string;
+  services?: string[];
 }
 
 Deno.serve(async (req: Request) => {
@@ -38,17 +36,29 @@ Deno.serve(async (req: Request) => {
       .from("contact_inquiries")
       .insert([
         {
-          name: `${formData.firstName} ${formData.lastName}`,
+          name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          inquiry_type: `${formData.residenceType} - ${formData.priceRange}`,
-          message: formData.message || "Property inquiry",
+          phone: formData.phone || null,
+          inquiry_type: "General Inquiry",
+          message: formData.message,
+          services: formData.services || [],
         },
       ]);
 
     if (dbError) throw dbError;
 
     if (resendApiKey) {
+      const servicesHtml = formData.services && formData.services.length > 0
+        ? `<div class="field">
+            <div class="label">Services Interested In:</div>
+            <div class="value">
+              <ul style="margin: 5px 0; padding-left: 20px;">
+                ${formData.services.map(s => `<li>${s}</li>`).join('')}
+              </ul>
+            </div>
+          </div>`
+        : '';
+
       const emailHtml = `
         <!DOCTYPE html>
         <html>
@@ -71,7 +81,7 @@ Deno.serve(async (req: Request) => {
               <div class="content">
                 <div class="field">
                   <div class="label">Name:</div>
-                  <div class="value">${formData.firstName} ${formData.lastName}</div>
+                  <div class="value">${formData.name}</div>
                 </div>
                 <div class="field">
                   <div class="label">Email:</div>
@@ -79,19 +89,12 @@ Deno.serve(async (req: Request) => {
                 </div>
                 <div class="field">
                   <div class="label">Phone:</div>
-                  <div class="value">${formData.phone}</div>
+                  <div class="value">${formData.phone || "Not provided"}</div>
                 </div>
-                <div class="field">
-                  <div class="label">Residence Type:</div>
-                  <div class="value">${formData.residenceType}</div>
-                </div>
-                <div class="field">
-                  <div class="label">Price Range:</div>
-                  <div class="value">${formData.priceRange}</div>
-                </div>
+                ${servicesHtml}
                 <div class="field">
                   <div class="label">Message:</div>
-                  <div class="value">${formData.message || "No additional message"}</div>
+                  <div class="value">${formData.message}</div>
                 </div>
               </div>
             </div>
@@ -108,7 +111,7 @@ Deno.serve(async (req: Request) => {
         body: JSON.stringify({
           from: "JustCore Realty <noreply@justcorerealty.com>",
           to: ["info@justcorerealty.com"],
-          subject: `New Inquiry from ${formData.firstName} ${formData.lastName}`,
+          subject: `New Inquiry from ${formData.name}`,
           html: emailHtml,
         }),
       });
