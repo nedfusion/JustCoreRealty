@@ -8,8 +8,19 @@ export default function Contact() {
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    services: [] as string[]
   });
+
+  const serviceOptions = [
+    'Property Management/Maintenance',
+    'House/Land Purchase & Rentage',
+    'Surveying',
+    'Architectural Design',
+    'Structural Construction',
+    'Real Estate Finishing',
+    'Real Estate Furnishing'
+  ];
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -25,7 +36,8 @@ export default function Contact() {
           email: formData.email,
           phone: formData.phone,
           inquiry_type: 'General Inquiry',
-          message: formData.message
+          message: formData.message,
+          services: formData.services
         }
       ]);
 
@@ -36,7 +48,8 @@ export default function Contact() {
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        services: []
       });
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -51,6 +64,15 @@ export default function Contact() {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleServiceChange = (service: string) => {
+    setFormData(prev => ({
+      ...prev,
+      services: prev.services.includes(service)
+        ? prev.services.filter(s => s !== service)
+        : [...prev.services, service]
+    }));
   };
 
   return (
@@ -177,6 +199,37 @@ export default function Contact() {
                       className="w-full bg-white/5 border border-white/10 p-4 focus:outline-none focus:border-[#C9A24D] transition-colors text-white placeholder:text-white/40"
                       placeholder="Your Phone Number"
                     />
+                  </div>
+
+                  <div>
+                    <p className="text-white/70 mb-3">Services You're Interested In</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {serviceOptions.map((service) => (
+                        <label
+                          key={service}
+                          className="flex items-center gap-3 cursor-pointer group"
+                        >
+                          <div className="relative">
+                            <input
+                              type="checkbox"
+                              checked={formData.services.includes(service)}
+                              onChange={() => handleServiceChange(service)}
+                              className="sr-only peer"
+                            />
+                            <div className="w-5 h-5 border border-white/30 bg-white/5 peer-checked:bg-[#C9A24D] peer-checked:border-[#C9A24D] transition-colors flex items-center justify-center">
+                              {formData.services.includes(service) && (
+                                <svg className="w-3 h-3 text-black" viewBox="0 0 12 12" fill="none">
+                                  <path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              )}
+                            </div>
+                          </div>
+                          <span className="text-white/70 group-hover:text-white transition-colors text-sm">
+                            {service}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
 
                   <div>
