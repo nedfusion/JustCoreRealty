@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { CheckCircle, Package, ArrowRight } from 'lucide-react';
+import { CircleCheck as CheckCircle, Package, ArrowRight } from 'lucide-react';
 import { supabase, type Order } from '../lib/supabase';
 
 export default function OrderSuccess() {

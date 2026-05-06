@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Home, Building2, BarChart3, Paintbrush, Key, MapPin } from 'lucide-react';
+import { ArrowRight, Hop as Home, Building2, ChartBar as BarChart3, Paintbrush, Key, MapPin } from 'lucide-react';
 
 const services = [
   {

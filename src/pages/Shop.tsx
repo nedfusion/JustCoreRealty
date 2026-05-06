@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Filter, X, ChevronDown } from 'lucide-react';
+import { ListFilter as Filter, X, ChevronDown } from 'lucide-react';
 import { supabase, type Product, type Category } from '../lib/supabase';
 import ProductCard from '../components/ProductCard';
 

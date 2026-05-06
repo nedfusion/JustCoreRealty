@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Users, Home, TrendingUp } from 'lucide-react';
+import { ArrowRight, Award, Users, Hop as Home, TrendingUp } from 'lucide-react';
 
 export default function About() {
   return (

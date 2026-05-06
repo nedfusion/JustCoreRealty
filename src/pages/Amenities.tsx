@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Wifi, Shield, Car, Dumbbell, Trees, Waves } from 'lucide-react';
+import { ArrowRight, Wifi, Shield, Car, Dumbbell, Trees, Save as Waves } from 'lucide-react';
 
 const amenities = [
   { icon: Shield, title: '24/7 Security', desc: 'Round-the-clock security personnel, CCTV surveillance, and biometric access control.' },
