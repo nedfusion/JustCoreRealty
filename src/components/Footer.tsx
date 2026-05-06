@@ -1,136 +1,134 @@
-import { Linkedin, Instagram, Facebook, Mail, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <footer className="bg-charcoal text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16 mb-16">
+    <footer style={{
+      background: 'var(--color-primary-950)',
+      color: 'var(--color-primary-400)',
+      paddingTop: '64px', paddingBottom: '40px',
+    }}>
+      <div className="container">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '48px',
+          marginBottom: '48px',
+        }}>
+          {/* Brand */}
           <div>
-            <img
-              src="/logo-removebg-preview_(2).png"
-              alt="Just Core Realty"
-              className="h-24 w-auto mb-6 brightness-110"
-              loading="lazy"
-            />
-            <p className="text-gray-400 leading-relaxed font-light mb-6">
-              Redefining luxury living through exceptional real estate and bespoke interior design services.
+            <h3 style={{
+              fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 400,
+              color: '#fff', marginBottom: '16px', letterSpacing: '0.04em',
+            }}>
+              JUSTCORE REALTY
+            </h3>
+            <p style={{ fontSize: '0.8rem', lineHeight: 1.7, marginBottom: '24px' }}>
+              Premium real estate and luxury design services. We create spaces that reflect your vision and elevate your lifestyle.
             </p>
-            <div className="flex items-center space-x-4">
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 border border-gray-700 hover:border-gold flex items-center justify-center transition-colors group"
-              >
-                <Linkedin size={18} className="text-gray-400 group-hover:text-gold transition-colors" />
-              </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 border border-gray-700 hover:border-gold flex items-center justify-center transition-colors group"
-              >
-                <Instagram size={18} className="text-gray-400 group-hover:text-gold transition-colors" />
-              </a>
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 border border-gray-700 hover:border-gold flex items-center justify-center transition-colors group"
-              >
-                <Facebook size={18} className="text-gray-400 group-hover:text-gold transition-colors" />
-              </a>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              {['IG', 'FB', 'X'].map((label, i) => (
+                <a key={i} href="#" style={{
+                  width: '36px', height: '36px', border: '1px solid var(--color-primary-700)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.6rem', fontWeight: 700, color: 'var(--color-primary-400)',
+                  transition: 'all 0.3s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#fff'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--color-primary-700)'; e.currentTarget.style.color = 'var(--color-primary-400)'; }}>
+                  {label}
+                </a>
+              ))}
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6 tracking-wide">QUICK LINKS</h4>
-            <ul className="space-y-3">
-              <li>
-                <button
-                  onClick={() => scrollToSection('hero')}
-                  className="text-gray-400 hover:text-gold transition-colors font-light hover-underline-gold"
-                >
-                  Home
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('about')}
-                  className="text-gray-400 hover:text-gold transition-colors font-light hover-underline-gold"
-                >
-                  About
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('properties')}
-                  className="text-gray-400 hover:text-gold transition-colors font-light hover-underline-gold"
-                >
-                  Properties
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('amenities')}
-                  className="text-gray-400 hover:text-gold transition-colors font-light hover-underline-gold"
-                >
-                  Amenities
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="text-gray-400 hover:text-gold transition-colors font-light hover-underline-gold"
-                >
-                  Contact
-                </button>
-              </li>
+            <h4 style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#fff', marginBottom: '20px' }}>
+              Quick Links
+            </h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { label: 'Home', to: '/' },
+                { label: 'About Us', to: '/about' },
+                { label: 'Services', to: '/services' },
+                { label: 'Portfolio', to: '/portfolio' },
+                { label: 'Amenities', to: '/amenities' },
+                { label: 'Contact', to: '/contact' },
+              ].map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} style={{ fontSize: '0.8rem', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-primary-400)')}>
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Shop */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6 tracking-wide">CONTACT</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <Mail size={18} className="text-gold mt-1 mr-3 flex-shrink-0" />
-                <a href="mailto:info@justcorerealty.com" className="text-gray-400 hover:text-gold transition-colors font-light">
-                  info@justcorerealty.com
-                </a>
-              </li>
-              <li className="flex items-start">
-                <Globe size={18} className="text-gold mt-1 mr-3 flex-shrink-0" />
-                <a href="https://justcorerealty.com" className="text-gray-400 hover:text-gold transition-colors font-light">
-                  www.justcorerealty.com
-                </a>
-              </li>
+            <h4 style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#fff', marginBottom: '20px' }}>
+              Shop
+            </h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { label: 'All Products', to: '/shop' },
+                { label: 'New In', to: '/shop/new-in' },
+                { label: 'Furniture', to: '/shop/furniture' },
+                { label: 'Lighting', to: '/shop/lighting' },
+                { label: 'Rugs', to: '/shop/rugs' },
+                { label: 'Home Decor', to: '/shop/home-decor' },
+              ].map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} style={{ fontSize: '0.8rem', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-primary-400)')}>
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#fff', marginBottom: '20px' }}>
+              Contact
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {[
+                { Icon: MapPin, text: 'Lagos, Nigeria' },
+                { Icon: Phone, text: '+234 800 000 0000' },
+                { Icon: Mail, text: 'info@justcorerealty.com' },
+              ].map(({ Icon, text }, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <Icon size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--color-accent-400)' }} />
+                  <span style={{ fontSize: '0.8rem' }}>{text}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm mb-4 md:mb-0 font-light">
-            © {new Date().getFullYear()} Just Core Realty and Interiors. All rights reserved.
-          </p>
-          <div className="flex space-x-8">
-            <a href="#privacy" className="text-gray-500 hover:text-gold text-sm transition-colors font-light">
-              Privacy Policy
-            </a>
-            <a href="#accessibility" className="text-gray-500 hover:text-gold text-sm transition-colors font-light">
-              Accessibility Statement
-            </a>
+        <div style={{
+          borderTop: '1px solid var(--color-primary-800)',
+          paddingTop: '24px',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px',
+        }}>
+          <p style={{ fontSize: '0.7rem' }}>© 2026 Justcore Realty. All rights reserved.</p>
+          <div style={{ display: 'flex', gap: '24px' }}>
+            {['Privacy Policy', 'Terms of Service'].map(t => (
+              <a key={t} href="#" style={{ fontSize: '0.7rem', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-primary-400)')}>
+                {t}
+              </a>
+            ))}
           </div>
         </div>
       </div>
-
-      <div className="h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
     </footer>
   );
 }

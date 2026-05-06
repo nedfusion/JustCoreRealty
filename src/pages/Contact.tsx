@@ -1,311 +1,161 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    services: [] as string[]
-  });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', inquiry_type: 'general' });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
 
-  const serviceOptions = [
-    'Property Management/Maintenance',
-    'House/Land Purchase & Rentage',
-    'Surveying',
-    'Architectural Design',
-    'Structural Construction',
-    'Real Estate Finishing',
-    'Real Estate Furnishing'
-  ];
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-contact-form`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            message: formData.message,
-            services: formData.services
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to submit form');
-      }
-
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-        services: []
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+    if (!form.name || !form.email || !form.message) {
+      setError('Please fill in all required fields.');
+      return;
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+    setLoading(true);
+    setError('');
+    const { error: dbError } = await supabase.from('contact_inquiries').insert({
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      message: form.message,
+      inquiry_type: form.inquiry_type,
     });
-  };
+    setLoading(false);
+    if (dbError) {
+      setError('Failed to send your message. Please try again.');
+    } else {
+      setSuccess(true);
+      setForm({ name: '', email: '', phone: '', message: '', inquiry_type: 'general' });
+    }
+  }
 
-  const handleServiceChange = (service: string) => {
-    setFormData(prev => ({
-      ...prev,
-      services: prev.services.includes(service)
-        ? prev.services.filter(s => s !== service)
-        : [...prev.services, service]
-    }));
+  const inputStyle = {
+    width: '100%', padding: '12px 16px', border: '1px solid var(--color-primary-300)',
+    fontSize: '0.85rem', outline: 'none', transition: 'border-color 0.2s', background: '#fff', color: 'var(--color-primary-900)',
   };
 
   return (
-    <main className="bg-black text-white min-h-screen">
-      <section className="pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <h1 className="text-5xl md:text-6xl mb-6">Get In Touch</h1>
-            <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Let us help you find your dream property or answer any questions you may have
+    <div style={{ paddingTop: 'var(--nav-height)' }}>
+      {/* Hero */}
+      <section style={{ position: 'relative', height: '50vh', minHeight: '320px', overflow: 'hidden' }}>
+        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt="Contact" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
+        <div className="container" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', zIndex: 1 }}>
+          <div>
+            <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: '12px' }}>
+              Reach Out
             </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-16 mb-20">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="mb-12">
-                <h2 className="text-3xl mb-8">Contact Information</h2>
-
-                <div className="space-y-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#C9A24D]/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-[#C9A24D]" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl mb-2">Address</h3>
-                      <p className="text-white/70 leading-relaxed">
-                        Pinnock Estate, Lekki<br />
-                        Lagos, Nigeria
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#C9A24D]/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-[#C9A24D]" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl mb-2">Email</h3>
-                      <a
-                        href="mailto:info@justcorerealty.com"
-                        className="text-white/70 hover:text-[#C9A24D] transition-colors"
-                      >
-                        info@justcorerealty.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#C9A24D]/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-[#C9A24D]" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl mb-2">Phone</h3>
-                      <a
-                        href="tel:+2348142995133"
-                        className="text-white/70 hover:text-[#C9A24D] transition-colors"
-                      >
-                        +234 814 299 5133
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative h-80">
-                <img
-                  src="/img_0391.jpg"
-                  alt="Luxury Property"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="bg-white/5 border border-white/10 p-8">
-                <h2 className="text-3xl mb-6">Send Us a Message</h2>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 p-4 focus:outline-none focus:border-[#C9A24D] transition-colors text-white placeholder:text-white/40"
-                      placeholder="Your Name"
-                    />
-                  </div>
-
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 p-4 focus:outline-none focus:border-[#C9A24D] transition-colors text-white placeholder:text-white/40"
-                      placeholder="Your Email"
-                    />
-                  </div>
-
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 p-4 focus:outline-none focus:border-[#C9A24D] transition-colors text-white placeholder:text-white/40"
-                      placeholder="Your Phone Number"
-                    />
-                  </div>
-
-                  <div>
-                    <p className="text-white/70 mb-3">Services You're Interested In</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {serviceOptions.map((service) => (
-                        <label
-                          key={service}
-                          className="flex items-center gap-3 cursor-pointer group"
-                        >
-                          <div className="relative">
-                            <input
-                              type="checkbox"
-                              checked={formData.services.includes(service)}
-                              onChange={() => handleServiceChange(service)}
-                              className="sr-only peer"
-                            />
-                            <div className="w-5 h-5 border border-white/30 bg-white/5 peer-checked:bg-[#C9A24D] peer-checked:border-[#C9A24D] transition-colors flex items-center justify-center">
-                              {formData.services.includes(service) && (
-                                <svg className="w-3 h-3 text-black" viewBox="0 0 12 12" fill="none">
-                                  <path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                              )}
-                            </div>
-                          </div>
-                          <span className="text-white/70 group-hover:text-white transition-colors text-sm">
-                            {service}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <textarea
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={6}
-                      className="w-full bg-white/5 border border-white/10 p-4 focus:outline-none focus:border-[#C9A24D] transition-colors resize-none text-white placeholder:text-white/40"
-                      placeholder="Your Message"
-                    />
-                  </div>
-
-                  {submitStatus === 'success' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="bg-green-900/30 border border-green-500/50 text-green-300 px-4 py-3"
-                    >
-                      Thank you for your message. We'll be in touch shortly.
-                    </motion.div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="bg-red-900/30 border border-red-500/50 text-red-300 px-4 py-3"
-                    >
-                      Something went wrong. Please try again.
-                    </motion.div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-[#C9A24D] text-black px-8 py-4 font-semibold hover:bg-[#B89240] disabled:opacity-60 transition-colors w-full"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
-              </div>
-            </motion.div>
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 300, color: '#fff' }}>
+              Contact Us
+            </h1>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="w-full"
-          >
-            <h2 className="text-3xl mb-8 text-center">Visit Our Location</h2>
-            <div className="w-full h-[500px] border border-white/10 overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps?q=Pinnock+Beach+Estate,+Lekki,+Lagos,+Nigeria&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Pinnock Estate Location"
-              />
-            </div>
-          </motion.div>
         </div>
       </section>
-    </main>
+
+      <section style={{ padding: '96px 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '64px', alignItems: 'start' }}>
+            {/* Contact info */}
+            <div>
+              <p className="section-label">Get in Touch</p>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, marginBottom: '24px' }}>
+                We'd Love to Hear From You
+              </h2>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.9, color: 'var(--color-primary-600)', marginBottom: '40px' }}>
+                Whether you have a question about a property, need a valuation, or want to explore our interior design services — our team is always ready to help.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+                {[
+                  { icon: MapPin, label: 'Office Address', value: '14 Adeola Odeku Street, Victoria Island, Lagos, Nigeria' },
+                  { icon: Phone, label: 'Phone', value: '+234 800 000 0000' },
+                  { icon: Mail, label: 'Email', value: 'info@justcorerealty.com' },
+                  { icon: Clock, label: 'Business Hours', value: 'Mon – Fri: 9am – 6pm\nSat: 10am – 4pm' },
+                ].map(({ icon: Icon, label, value }) => (
+                  <div key={label} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                    <div style={{ width: '40px', height: '40px', background: 'var(--color-primary-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Icon size={16} style={{ color: 'var(--color-primary-700)' }} />
+                    </div>
+                    <div>
+                      <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-primary-500)', marginBottom: '4px' }}>{label}</p>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--color-primary-700)', whiteSpace: 'pre-line', lineHeight: 1.6 }}>{value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Form */}
+            <div style={{ background: 'var(--color-primary-50)', padding: '40px' }}>
+              {success ? (
+                <div style={{ textAlign: 'center', padding: '40px 0' }}>
+                  <div style={{ fontSize: '3rem', marginBottom: '16px' }}>✓</div>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 400, marginBottom: '12px' }}>Message Sent!</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-primary-600)', lineHeight: 1.7 }}>
+                    Thank you for reaching out. We'll get back to you within 1 business day.
+                  </p>
+                  <button onClick={() => setSuccess(false)} className="btn btn-outline" style={{ marginTop: '24px' }}>
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 400, marginBottom: '8px' }}>Send a Message</h3>
+
+                  {error && <p style={{ fontSize: '0.8rem', color: 'var(--color-error-500)', padding: '10px 16px', background: '#fef2f2', border: '1px solid #fecaca' }}>{error}</p>}
+
+                  <div>
+                    <label style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-primary-700)', display: 'block', marginBottom: '6px' }}>Inquiry Type</label>
+                    <select value={form.inquiry_type} onChange={e => setForm(f => ({ ...f, inquiry_type: e.target.value }))} style={{ ...inputStyle, cursor: 'pointer' }}
+                      onFocus={e => (e.target.style.borderColor = 'var(--color-primary-900)')}
+                      onBlur={e => (e.target.style.borderColor = 'var(--color-primary-300)')}>
+                      <option value="general">General Inquiry</option>
+                      <option value="buy">Buying a Property</option>
+                      <option value="sell">Selling a Property</option>
+                      <option value="rent">Rental Inquiry</option>
+                      <option value="design">Interior Design</option>
+                      <option value="investment">Investment Advisory</option>
+                    </select>
+                  </div>
+
+                  {[
+                    { key: 'name', label: 'Full Name *', type: 'text' },
+                    { key: 'email', label: 'Email Address *', type: 'email' },
+                    { key: 'phone', label: 'Phone Number', type: 'tel' },
+                  ].map(({ key, label, type }) => (
+                    <div key={key}>
+                      <label style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-primary-700)', display: 'block', marginBottom: '6px' }}>{label}</label>
+                      <input type={type} value={form[key as keyof typeof form]}
+                        onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+                        style={inputStyle}
+                        onFocus={e => (e.target.style.borderColor = 'var(--color-primary-900)')}
+                        onBlur={e => (e.target.style.borderColor = 'var(--color-primary-300)')} />
+                    </div>
+                  ))}
+
+                  <div>
+                    <label style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-primary-700)', display: 'block', marginBottom: '6px' }}>Message *</label>
+                    <textarea value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                      rows={5} placeholder="Tell us what you're looking for..."
+                      style={{ ...inputStyle, resize: 'vertical' }}
+                      onFocus={e => (e.target.style.borderColor = 'var(--color-primary-900)')}
+                      onBlur={e => (e.target.style.borderColor = 'var(--color-primary-300)')} />
+                  </div>
+
+                  <button type="submit" className="btn btn-primary" disabled={loading}
+                    style={{ width: '100%', justifyContent: 'center', opacity: loading ? 0.7 : 1 }}>
+                    {loading ? 'Sending...' : 'Send Message'}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,137 +1,112 @@
-import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+
+const projects = [
+  { id: 1, title: 'Lekki Phase 1 Luxury Villa', category: 'Residential', location: 'Lagos', img: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800', price: '₦450M', desc: '5-bedroom luxury villa with pool, home cinema, and smart home technology.' },
+  { id: 2, title: 'Victoria Island Office Complex', category: 'Commercial', location: 'Lagos', img: 'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=800', price: '₦1.2B', desc: 'Grade-A office complex with 24,000 sqft of premium workspace across 8 floors.' },
+  { id: 3, title: 'Ikoyi Penthouse', category: 'Residential', location: 'Lagos', img: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800', price: '₦680M', desc: 'Full-floor penthouse with panoramic views, private elevator, and bespoke interior design.' },
+  { id: 4, title: 'Abuja Retail Mall', category: 'Commercial', location: 'Abuja', img: 'https://images.pexels.com/photos/1707820/pexels-photo-1707820.jpeg?auto=compress&cs=tinysrgb&w=800', price: '₦3.5B', desc: 'Modern retail mall with 85 shops, food court, cinema, and ample parking.' },
+  { id: 5, title: 'Banana Island Estate', category: 'Land', location: 'Lagos', img: 'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=800', price: '₦850M', desc: '2-acre development parcel on Banana Island with all government approvals in place.' },
+  { id: 6, title: 'Chevron Drive Apartments', category: 'Residential', location: 'Lagos', img: 'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800', price: '₦120M per unit', desc: 'Contemporary 3-bedroom apartments in a gated estate with excellent amenities.' },
+];
+
+const categories = ['All', 'Residential', 'Commercial', 'Land'];
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [active, setActive] = useState('All');
 
-  const projects = [
-    { id: 1, image: '/img_0162.jpg', category: 'residential', title: 'Luxury Villa', location: 'Lekki, Lagos' },
-    { id: 2, image: '/img_0370.jpg', category: 'residential', title: 'Modern Residence', location: 'Ikoyi, Lagos' },
-    { id: 3, image: '/img_0375.jpg', category: 'interior', title: 'Contemporary Living Space', location: 'Victoria Island, Lagos' },
-    { id: 4, image: '/img_0380.jpg', category: 'interior', title: 'Elegant Interior Design', location: 'Abuja' },
-    { id: 5, image: '/img_0381.jpg', category: 'residential', title: 'Premium Development', location: 'Lekki, Lagos' },
-    { id: 6, image: '/img_0388.jpg', category: 'commercial', title: 'Corporate Office Space', location: 'Victoria Island, Lagos' },
-    { id: 7, image: '/img_0389.jpg', category: 'interior', title: 'Bespoke Interior', location: 'Ikoyi, Lagos' },
-    { id: 8, image: '/img_0391.jpg', category: 'residential', title: 'Luxury Apartment', location: 'Lekki Phase 1, Lagos' },
-    { id: 9, image: '/img_0394.jpg', category: 'residential', title: 'Executive Home', location: 'Asaba' },
-    { id: 10, image: '/img_0395.jpg', category: 'interior', title: 'Modern Interior Fit-Out', location: 'Port Harcourt' },
-    { id: 11, image: '/img_0400.jpg', category: 'residential', title: 'Contemporary Villa', location: 'Lekki, Lagos' },
-    { id: 12, image: '/img_0402.jpg', category: 'residential', title: 'Signature Property', location: 'Abuja' },
-    { id: 13, image: '/img_0416.jpg', category: 'commercial', title: 'Mixed-Use Development', location: 'Victoria Island, Lagos' },
-    { id: 14, image: '/img_0419.jpg', category: 'residential', title: 'Premium Residence', location: 'Ikoyi, Lagos' },
-    { id: 15, image: '/img_0420.jpg', category: 'interior', title: 'Luxury Interior', location: 'Lekki, Lagos' },
-    { id: 16, image: '/img_0428.jpg', category: 'residential', title: 'Modern Estate', location: 'Aba' },
-    { id: 17, image: '/img_0437.jpg', category: 'residential', title: 'Executive Development', location: 'Abuja' },
-    { id: 18, image: '/img_0438.jpg', category: 'interior', title: 'Contemporary Interior', location: 'Lagos' },
-    { id: 19, image: '/img_0575.jpg', category: 'residential', title: 'Luxury Home', location: 'Lekki, Lagos' },
-    { id: 20, image: '/img_0577.jpg', category: 'residential', title: 'Premium Villa', location: 'Ikoyi, Lagos' },
-    { id: 21, image: '/img_0581.jpg', category: 'interior', title: 'Designer Interior', location: 'Victoria Island, Lagos' },
-    { id: 22, image: '/img_0583.jpg', category: 'residential', title: 'Modern Home', location: 'Lekki, Lagos' },
-    { id: 23, image: '/img_0584.jpg', category: 'residential', title: 'Signature Development', location: 'Abuja' },
-    { id: 24, image: '/img_0591.jpg', category: 'interior', title: 'Elegant Interior', location: 'Port Harcourt' },
-    { id: 25, image: '/img_0592.jpg', category: 'residential', title: 'Contemporary Estate', location: 'Asaba' },
-    { id: 26, image: '/img_0596.jpg', category: 'interior', title: 'Luxury Fit-Out', location: 'Lagos' },
-    { id: 27, image: '/img_0597.jpg', category: 'residential', title: 'Premium Property', location: 'Lekki, Lagos' },
-    { id: 28, image: '/img_0598.jpg', category: 'interior', title: 'Modern Interior Design', location: 'Abuja' }
-  ];
-
-  const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'residential', label: 'Residential' },
-    { id: 'commercial', label: 'Commercial' },
-    { id: 'interior', label: 'Interior Design' }
-  ];
-
-  const filteredProjects = activeFilter === 'all'
-    ? projects
-    : projects.filter(project => project.category === activeFilter);
+  const filtered = active === 'All' ? projects : projects.filter(p => p.category === active);
 
   return (
-    <main className="bg-black text-white min-h-screen">
-      <section className="pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="h-0.5 w-20 bg-[#C9A24D] mb-8 mx-auto" />
-            <h1 className="text-5xl md:text-6xl mb-6">Our Portfolio</h1>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              A showcase of our commitment to architectural excellence, refined aesthetics, and exceptional craftsmanship
-            </p>
-          </motion.div>
+    <div style={{ paddingTop: 'var(--nav-height)' }}>
+      {/* Hero */}
+      <section style={{ position: 'relative', height: '55vh', minHeight: '380px', overflow: 'hidden' }}>
+        <img src="https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt="Portfolio" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
+        <div className="container" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', zIndex: 1 }}>
+          <div>
+            <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: '12px' }}>Our Work</p>
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 300, color: '#fff' }}>
+              Portfolio
+            </h1>
+          </div>
+        </div>
+      </section>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                className={`px-8 py-3 text-sm font-semibold tracking-wide transition-all ${
-                  activeFilter === category.id
-                    ? 'bg-[#C9A24D] text-black'
-                    : 'bg-white/5 text-white border border-white/10 hover:border-[#C9A24D]/50'
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </motion.div>
+      {/* Filter */}
+      <div style={{ borderBottom: '1px solid var(--color-primary-200)', background: '#fff' }}>
+        <div className="container" style={{ display: 'flex', gap: '0', overflowX: 'auto' }}>
+          {categories.map(cat => (
+            <button key={cat} onClick={() => setActive(cat)} style={{
+              padding: '16px 24px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em',
+              textTransform: 'uppercase', cursor: 'pointer', border: 'none', background: 'none',
+              color: active === cat ? 'var(--color-primary-900)' : 'var(--color-primary-500)',
+              borderBottom: active === cat ? '2px solid var(--color-primary-900)' : '2px solid transparent',
+              transition: 'all 0.2s', whiteSpace: 'nowrap',
+            }}>
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="group relative h-[400px] overflow-hidden cursor-pointer card-hover-effect"
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover image-hover-effect"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-white/70 text-sm">{project.location}</p>
-                  <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-[#C9A24D] text-xs uppercase tracking-wider">
-                      {categories.find(c => c.id === project.category)?.label}
+      {/* Grid */}
+      <section style={{ padding: '64px 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}>
+            {filtered.map(project => (
+              <div key={project.id} style={{ cursor: 'pointer' }}
+                onMouseEnter={e => {
+                  const img = e.currentTarget.querySelector('img') as HTMLImageElement;
+                  if (img) img.style.transform = 'scale(1.04)';
+                }}
+                onMouseLeave={e => {
+                  const img = e.currentTarget.querySelector('img') as HTMLImageElement;
+                  if (img) img.style.transform = 'scale(1)';
+                }}>
+                <div style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', background: 'var(--color-primary-100)', marginBottom: '20px' }}>
+                  <img src={project.img} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s' }} />
+                  <div style={{ position: 'absolute', top: '16px', left: '16px' }}>
+                    <span style={{ background: 'var(--color-primary-900)', color: '#fff', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '5px 12px' }}>
+                      {project.category}
+                    </span>
+                  </div>
+                  <div style={{ position: 'absolute', bottom: '16px', right: '16px' }}>
+                    <span style={{ background: 'rgba(0,0,0,0.7)', color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px' }}>
+                      {project.price}
                     </span>
                   </div>
                 </div>
-              </motion.div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '4px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 400, flex: 1, lineHeight: 1.3 }}>{project.title}</h3>
+                </div>
+                <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-primary-500)', marginBottom: '8px' }}>
+                  {project.location}
+                </p>
+                <p style={{ fontSize: '0.82rem', lineHeight: 1.7, color: 'var(--color-primary-600)' }}>{project.desc}</p>
+              </div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-32 bg-[#C9A24D] text-black p-12 text-center"
-          >
-            <h2 className="text-3xl md:text-4xl mb-6">Start Your Project</h2>
-            <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-              Ready to create something exceptional? Let us bring your vision to life with the same dedication and excellence shown in our portfolio
-            </p>
-            <a
-              href="/contact"
-              className="inline-block bg-black text-white px-10 py-4 text-lg font-semibold btn-hover-effect"
-            >
-              Get In Touch
-            </a>
-          </motion.div>
         </div>
       </section>
-    </main>
+
+      {/* CTA */}
+      <section style={{ background: 'var(--color-primary-50)', padding: '80px 0', textAlign: 'center' }}>
+        <div className="container">
+          <p className="section-label">Work With Us</p>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 300, marginBottom: '24px' }}>
+            Let's Find Your Next Property
+          </h2>
+          <p style={{ fontSize: '0.9rem', color: 'var(--color-primary-600)', marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
+            Whether you're buying, selling, or investing — our team is ready to deliver exceptional results.
+          </p>
+          <Link to="/contact" className="btn btn-primary" style={{ gap: '8px' }}>
+            Talk to an Agent <ArrowRight size={14} />
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }

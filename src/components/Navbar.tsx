@@ -1,190 +1,204 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { ShoppingBag, Menu, X, ChevronDown } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+
+const shopCategories = [
+  { name: 'New In', slug: 'new-in' },
+  { name: 'Furniture', slug: 'furniture' },
+  { name: 'Sofas', slug: 'sofas' },
+  { name: 'Dining Tables', slug: 'dining-tables' },
+  { name: 'Chairs', slug: 'chairs' },
+  { name: 'Coffee Tables', slug: 'coffee-tables' },
+  { name: 'Lighting', slug: 'lighting' },
+  { name: 'Rugs', slug: 'rugs' },
+  { name: 'Vases', slug: 'vases' },
+  { name: 'Mirrors', slug: 'mirrors' },
+  { name: 'Storage', slug: 'storage' },
+  { name: 'Home Decor', slug: 'home-decor' },
+];
 
 export default function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
+  const { count } = useCart();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    setMenuOpen(false);
+    setShopOpen(false);
+  }, [location.pathname]);
+
+  const transparent = isHome && !scrolled && !menuOpen;
+
   return (
-    <nav
-      className={`sticky top-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'nav-scrolled'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-5">
-          <Link to="/" className="flex items-center">
-            <img
-              src="/logo-removebg-preview_(2).png"
-              alt="Just Core Realty"
-              className="h-20 w-auto brightness-110"
-              loading="eager"
-              fetchPriority="high"
-            />
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+      height: 'var(--nav-height)',
+      background: transparent ? 'transparent' : '#fff',
+      borderBottom: transparent ? 'none' : '1px solid var(--color-primary-200)',
+      transition: 'background 0.4s ease, border-color 0.4s ease',
+    }}>
+      <div className="container" style={{
+        height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px'
+      }}>
+        {/* Logo */}
+        <Link to="/" style={{
+          fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 400, letterSpacing: '0.04em',
+          color: transparent ? '#fff' : 'var(--color-primary-900)', transition: 'color 0.4s ease', whiteSpace: 'nowrap'
+        }}>
+          JUSTCORE REALTY
+        </Link>
+
+        {/* Desktop Nav */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '32px', flex: 1, justifyContent: 'center' }}
+          className="desktop-nav">
+          {[
+            { label: 'Home', to: '/' },
+            { label: 'About', to: '/about' },
+            { label: 'Services', to: '/services' },
+            { label: 'Portfolio', to: '/portfolio' },
+            { label: 'Amenities', to: '/amenities' },
+            { label: 'Contact', to: '/contact' },
+          ].map(({ label, to }) => (
+            <Link key={to} to={to} style={{
+              fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: transparent ? 'rgba(255,255,255,0.9)' : 'var(--color-primary-700)',
+              transition: 'color 0.3s',
+              borderBottom: location.pathname === to ? '1px solid currentColor' : 'none',
+              paddingBottom: '2px',
+            }}>
+              {label}
+            </Link>
+          ))}
+
+          {/* Shop dropdown */}
+          <div style={{ position: 'relative' }}
+            onMouseEnter={() => setShopOpen(true)}
+            onMouseLeave={() => setShopOpen(false)}>
+            <Link to="/shop" style={{
+              fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: transparent ? 'rgba(255,255,255,0.9)' : 'var(--color-primary-700)',
+              display: 'flex', alignItems: 'center', gap: '4px',
+              borderBottom: location.pathname.startsWith('/shop') ? '1px solid currentColor' : 'none',
+              paddingBottom: '2px',
+            }}>
+              Shop <ChevronDown size={12} />
+            </Link>
+            {shopOpen && (
+              <div style={{
+                position: 'absolute', top: '100%', left: '-16px', marginTop: '16px',
+                background: '#fff', border: '1px solid var(--color-primary-200)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px',
+                padding: '20px', minWidth: '280px', animation: 'fadeIn 0.2s ease',
+              }}>
+                <Link to="/shop" style={{
+                  gridColumn: '1/-1', fontSize: '0.65rem', fontWeight: 700,
+                  letterSpacing: '0.15em', textTransform: 'uppercase',
+                  color: 'var(--color-primary-500)', paddingBottom: '12px',
+                  borderBottom: '1px solid var(--color-primary-200)', marginBottom: '8px',
+                }}>
+                  All Products
+                </Link>
+                {shopCategories.map(cat => (
+                  <Link key={cat.slug} to={`/shop/${cat.slug}`} style={{
+                    fontSize: '0.72rem', color: 'var(--color-primary-700)',
+                    padding: '6px 8px', transition: 'color 0.2s',
+                    letterSpacing: '0.02em',
+                  }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-primary-900)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-primary-700)')}
+                  >
+                    {cat.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Cart + Menu */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <Link to="/cart" style={{ position: 'relative' }}>
+            <ShoppingBag size={20} color={transparent ? '#fff' : 'var(--color-primary-900)'} strokeWidth={1.5} />
+            {count > 0 && (
+              <span style={{
+                position: 'absolute', top: '-8px', right: '-8px',
+                background: 'var(--color-primary-900)', color: '#fff',
+                width: '18px', height: '18px', borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '0.6rem', fontWeight: 700,
+              }}>
+                {count}
+              </span>
+            )}
           </Link>
-
-          <div className="hidden lg:flex items-center space-x-10">
-            <Link
-              to="/"
-              className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
-            >
-              HOME
-            </Link>
-            <Link
-              to="/about"
-              className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
-            >
-              ABOUT
-            </Link>
-            <Link
-              to="/services"
-              className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
-            >
-              SERVICES
-            </Link>
-            <Link
-              to="/portfolio"
-              className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
-            >
-              PORTFOLIO
-            </Link>
-            <Link
-              to="/amenities"
-              className="text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide hover-underline-gold"
-            >
-              AMENITIES
-            </Link>
-            <Link
-              to="/contact"
-              className="bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 px-6 py-2.5 text-sm font-semibold tracking-wide"
-            >
-              CONTACT US
-            </Link>
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-4 ml-8">
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gold transition-colors"
-            >
-              <Linkedin size={18} />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gold transition-colors"
-            >
-              <Instagram size={18} />
-            </a>
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gold transition-colors"
-            >
-              <Facebook size={18} />
-            </a>
-          </div>
-
-          <button
-            className="lg:hidden text-white hover:text-gold transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          <button onClick={() => setMenuOpen(m => !m)} style={{ display: 'flex', alignItems: 'center' }}
+            className="mobile-menu-btn">
+            {menuOpen
+              ? <X size={22} color={transparent ? '#fff' : 'var(--color-primary-900)'} />
+              : <Menu size={22} color={transparent ? '#fff' : 'var(--color-primary-900)'} />
+            }
           </button>
         </div>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="lg:hidden bg-charcoal border-t border-gray-800">
-          <div className="px-4 pt-4 pb-6 space-y-1">
-            <Link
-              to="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
-            >
-              HOME
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div style={{
+          position: 'absolute', top: '100%', left: 0, right: 0,
+          background: '#fff', borderTop: '1px solid var(--color-primary-200)',
+          padding: '24px', display: 'flex', flexDirection: 'column', gap: '0',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+        }}>
+          {[
+            { label: 'Home', to: '/' },
+            { label: 'About', to: '/about' },
+            { label: 'Services', to: '/services' },
+            { label: 'Portfolio', to: '/portfolio' },
+            { label: 'Amenities', to: '/amenities' },
+            { label: 'Contact', to: '/contact' },
+            { label: 'Shop', to: '/shop' },
+            { label: 'Cart', to: '/cart' },
+          ].map(({ label, to }) => (
+            <Link key={to} to={to} style={{
+              fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: 'var(--color-primary-700)', padding: '14px 0',
+              borderBottom: '1px solid var(--color-primary-100)',
+            }}>
+              {label}
             </Link>
-            <Link
-              to="/about"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
-            >
-              ABOUT
-            </Link>
-            <Link
-              to="/services"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
-            >
-              SERVICES
-            </Link>
-            <Link
-              to="/portfolio"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
-            >
-              PORTFOLIO
-            </Link>
-            <Link
-              to="/amenities"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-left py-3 text-white hover:text-gold transition-colors font-medium text-sm tracking-wide"
-            >
-              AMENITIES
-            </Link>
-            <Link
-              to="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-left py-3 text-gold font-semibold text-sm tracking-wide"
-            >
-              CONTACT US
-            </Link>
-
-            <div className="flex items-center space-x-4 pt-4 border-t border-gray-800 mt-4">
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gold transition-colors"
-              >
-                <Linkedin size={18} />
-              </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gold transition-colors"
-              >
-                <Instagram size={18} />
-              </a>
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gold transition-colors"
-              >
-                <Facebook size={18} />
-              </a>
+          ))}
+          <div style={{ paddingTop: '16px' }}>
+            <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-primary-400)', marginBottom: '12px' }}>
+              Shop by category
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+              {shopCategories.map(cat => (
+                <Link key={cat.slug} to={`/shop/${cat.slug}`} style={{
+                  fontSize: '0.72rem', color: 'var(--color-primary-600)', padding: '4px 0',
+                }}>
+                  {cat.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       )}
+
+      <style>{`
+        @media (min-width: 1024px) { .mobile-menu-btn { display: none !important; } }
+        @media (max-width: 1023px) { .desktop-nav { display: none !important; } }
+      `}</style>
     </nav>
   );
 }

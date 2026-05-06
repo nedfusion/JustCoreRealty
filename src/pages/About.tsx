@@ -1,228 +1,127 @@
-import { motion } from 'framer-motion';
-import { Target, Award, Globe, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Award, Users, Home, TrendingUp } from 'lucide-react';
 
 export default function About() {
-  const coreValues = [
-    {
-      icon: Award,
-      title: 'Integrity',
-      description: 'We conduct every aspect of our business with transparency, accountability, and ethical discipline. Trust is the foundation of our relationships.'
-    },
-    {
-      icon: Target,
-      title: 'Excellence',
-      description: 'We pursue the highest standards in design, materials, workmanship, and service delivery.'
-    },
-    {
-      icon: Globe,
-      title: 'Innovation',
-      description: 'We continuously adopt modern design principles, construction techniques, and materials to remain relevant in a dynamic global market.'
-    },
-    {
-      icon: Users,
-      title: 'Client-Centricity',
-      description: 'Every project begins with a clear understanding of our client\'s vision and ends with results that exceed expectations.'
-    }
-  ];
-
-  const locations = [
-    'Lagos', 'Abuja', 'Port Harcourt', 'Asaba', 'Aba'
-  ];
-
   return (
-    <main className="bg-black text-white min-h-screen">
-      <section className="pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <h1 className="text-5xl md:text-6xl mb-6">About Just Core</h1>
-            <div className="h-0.5 w-20 bg-[#C9A24D] mx-auto mb-8" />
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Built on Integrity. Defined by Excellence.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid lg:grid-cols-2 gap-16 mb-32 items-center"
-          >
-            <div>
-              <h2 className="text-3xl md:text-4xl mb-6">Company Overview</h2>
-              <div className="space-y-4 text-white/70 leading-relaxed">
-                <p>
-                  Just Core Realty and Interiors is a premium real estate development and interior design company committed to delivering architecturally refined, aesthetically compelling, and commercially viable spaces across Nigeria.
-                </p>
-                <p>
-                  With a strong presence in major urban centers, we operate at the intersection of luxury, functionality, and integrity. Our work is guided by a clear philosophy: to create enduring value through disciplined design, meticulous execution, and uncompromising ethical standards.
-                </p>
-                <p>
-                  Every project undertaken by Just Core is a reflection of our commitment to quality, professionalism, and long-term client satisfaction.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative h-[500px] overflow-hidden">
-              <img
-                src="/img_0428.jpg"
-                alt="Just Core Realty"
-                className="w-full h-full object-cover image-hover-effect"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-32"
-          >
-            <div className="grid lg:grid-cols-2 gap-16">
-              <div className="bg-white/5 border border-white/10 p-10">
-                <div className="w-12 h-12 bg-[#C9A24D]/10 flex items-center justify-center mb-6">
-                  <Target className="w-6 h-6 text-[#C9A24D]" />
-                </div>
-                <h3 className="text-2xl mb-4">Vision</h3>
-                <p className="text-white/70 leading-relaxed">
-                  To be a leading real estate and interior design firm in Africa, recognized internationally for delivering luxury developments and interior solutions defined by integrity, architectural excellence, and timeless value.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 p-10">
-                <div className="w-12 h-12 bg-[#C9A24D]/10 flex items-center justify-center mb-6">
-                  <Award className="w-6 h-6 text-[#C9A24D]" />
-                </div>
-                <h3 className="text-2xl mb-4">Mission</h3>
-                <p className="text-white/70 leading-relaxed">
-                  To develop, design, and deliver high-quality real estate and interior spaces that meet global standards, enhance lifestyles, and provide sustainable value—while upholding the highest principles of integrity, professionalism, and client-centric service.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-32"
-          >
-            <h2 className="text-3xl md:text-4xl mb-12 text-center">Core Values</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {coreValues.map((value, index) => {
-                const Icon = value.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                    className="bg-white/5 border border-white/10 p-8 hover:border-[#C9A24D]/50 transition-colors"
-                  >
-                    <div className="w-14 h-14 bg-[#C9A24D]/10 flex items-center justify-center mb-6">
-                      <Icon className="w-7 h-7 text-[#C9A24D]" />
-                    </div>
-                    <h3 className="text-xl mb-3">{value.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">
-                      {value.description}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mb-32"
-          >
-            <h2 className="text-3xl md:text-4xl mb-8 text-center">Design Philosophy</h2>
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white/5 border border-white/10 p-10">
-                <p className="text-white/70 leading-relaxed mb-6">
-                  Our design philosophy is rooted in architectural discipline, spatial harmony, and timeless aesthetics. We believe that great spaces are not only visually impressive but also functional, durable, and emotionally engaging.
-                </p>
-                <div className="grid md:grid-cols-2 gap-6 mt-8">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-[#C9A24D]" />
-                      <span className="text-white/80">Clean architectural lines</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-[#C9A24D]" />
-                      <span className="text-white/80">Balanced spatial planning</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-[#C9A24D]" />
-                      <span className="text-white/80">Premium materials and finishes</span>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-[#C9A24D]" />
-                      <span className="text-white/80">Natural light optimization</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-[#C9A24D]" />
-                      <span className="text-white/80">Context-sensitive design</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-[#C9A24D]" />
-                      <span className="text-white/80">Timeless aesthetics</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid lg:grid-cols-2 gap-16 items-center"
-          >
-            <div className="relative h-[500px] order-2 lg:order-1 overflow-hidden">
-              <img
-                src="/img_0438.jpg"
-                alt="Geographic Coverage"
-                className="w-full h-full object-cover image-hover-effect"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <h2 className="text-3xl md:text-4xl mb-6">Geographic Coverage</h2>
-              <p className="text-white/70 leading-relaxed mb-8">
-                Just Core Realty and Interiors operates across Nigeria's major economic and lifestyle hubs, delivering excellence in every location.
-              </p>
-              <div className="space-y-4">
-                {locations.map((location, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                    className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4"
-                  >
-                    <div className="w-2 h-2 bg-[#C9A24D]" />
-                    <span className="text-lg">{location}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+    <div style={{ paddingTop: 'var(--nav-height)' }}>
+      {/* Hero */}
+      <section style={{ position: 'relative', height: '60vh', minHeight: '400px', overflow: 'hidden' }}>
+        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt="About" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)' }} />
+        <div className="container" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', zIndex: 1 }}>
+          <div>
+            <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: '12px' }}>Who We Are</p>
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 300, color: '#fff' }}>
+              About Justcore Realty
+            </h1>
+          </div>
         </div>
       </section>
-    </main>
+
+      {/* Story */}
+      <section style={{ padding: '96px 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '64px', alignItems: 'center' }}>
+            <div>
+              <p className="section-label">Our Story</p>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, marginBottom: '24px' }}>
+                Built on Trust, Driven by Excellence
+              </h2>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.9, color: 'var(--color-primary-600)', marginBottom: '20px' }}>
+                Justcore Realty was founded with a singular vision: to redefine the real estate experience in Nigeria by combining world-class service with a deep understanding of our clients' needs.
+              </p>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.9, color: 'var(--color-primary-600)', marginBottom: '32px' }}>
+                Over the years, we have helped hundreds of families and businesses find their perfect space — from luxurious residential properties to premier commercial real estate. Our commitment to integrity, innovation, and client satisfaction drives everything we do.
+              </p>
+              <Link to="/contact" className="btn btn-primary" style={{ gap: '8px' }}>
+                Get in Touch <ArrowRight size={14} />
+              </Link>
+            </div>
+            <div style={{ position: 'relative' }}>
+              <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Our office" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }} />
+              <div style={{ position: 'absolute', bottom: '-24px', right: '-24px', background: 'var(--color-primary-900)', color: '#fff', padding: '32px', width: '200px' }}>
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', fontWeight: 300, lineHeight: 1 }}>12+</p>
+                <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '8px', color: 'var(--color-primary-400)' }}>Years of Excellence</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section style={{ background: 'var(--color-primary-950)', padding: '80px 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '32px', textAlign: 'center' }}>
+            {[
+              { icon: Home, num: '500+', label: 'Properties Sold' },
+              { icon: Users, num: '1,200+', label: 'Happy Clients' },
+              { icon: Award, num: '15+', label: 'Awards Won' },
+              { icon: TrendingUp, num: '98%', label: 'Client Retention' },
+            ].map(({ icon: Icon, num, label }) => (
+              <div key={label}>
+                <Icon size={28} style={{ color: 'var(--color-accent-400)', margin: '0 auto 12px' }} />
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', fontWeight: 300, color: '#fff', marginBottom: '8px' }}>{num}</p>
+                <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-primary-500)' }}>{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section style={{ padding: '96px 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+            <p className="section-label">The People Behind Justcore</p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 300 }}>
+              Our Leadership Team
+            </h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '32px' }}>
+            {[
+              { name: 'Adebayo Johnson', role: 'CEO & Founder', img: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400' },
+              { name: 'Chidinma Okafor', role: 'Head of Sales', img: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400' },
+              { name: 'Emeka Nwachukwu', role: 'Property Manager', img: 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=400' },
+              { name: 'Fatima Aliyu', role: 'Interior Design Lead', img: 'https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=400' },
+            ].map(({ name, role, img }) => (
+              <div key={name} style={{ textAlign: 'center' }}>
+                <div style={{ aspectRatio: '1/1', marginBottom: '16px', overflow: 'hidden' }}>
+                  <img src={img} alt={name} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', objectPosition: 'top', transition: 'transform 0.5s' }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 400, marginBottom: '4px' }}>{name}</h3>
+                <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-primary-500)' }}>{role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section style={{ background: 'var(--color-primary-50)', padding: '96px 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+            <p className="section-label">What Drives Us</p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 300 }}>Our Core Values</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '32px' }}>
+            {[
+              { title: 'Integrity', desc: 'We operate with complete transparency and honesty in every transaction, building lasting relationships based on trust.' },
+              { title: 'Excellence', desc: 'We pursue the highest standards in all we do — from property curation to client service and after-sales support.' },
+              { title: 'Innovation', desc: 'We leverage technology and design thinking to deliver smarter, better real estate solutions for our clients.' },
+              { title: 'Community', desc: 'We invest in the communities we serve, supporting sustainable development and quality living for all.' },
+            ].map(({ title, desc }) => (
+              <div key={title} style={{ padding: '32px', background: '#fff', borderTop: '3px solid var(--color-primary-900)' }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 400, marginBottom: '12px' }}>{title}</h3>
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.8, color: 'var(--color-primary-600)' }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
